@@ -7,3 +7,7 @@ faiss-cpu
 pypdf
 python-dotenv
 python-multipart
+transformers
+torch
+sentence-transformers
+langchain-huggingface

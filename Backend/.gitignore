@@ -1,12 +1,21 @@
-# Ignore Python cache
+# Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Ignore virtual environment
+# Virtual env
+.venv/
 venv/
+env/
 
-# Ignore environment variables
-.env
+# OS files
+.DS_Store
+Thumbs.db
 
-# Ignore local FAISS index files
+# Logs
+*.log
+
+# Uploads and FAISS index
+uploads/
 faiss_index/

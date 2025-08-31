@@ -19,10 +19,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Lobster&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Noto+Sans+KR:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sacramento&family=Source+Code+Pro:ital,wght@0,801;1,801&family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="head_logo_log">
+        <div>
+            <img id="team_logo_img" src="team_logo2.png" alt="">
+        </div>
+        <div>
+            <button id="login">LOGIN</button>
+            <button id="signup">SIGNUP</button>
+        </div>
+    </header>
     <section>
         <h1 id="Got_Ques">YOUR AI-POWERED DOCUMENT SEARCH ASSISTANT</h1>
-        <img id="white_chatbox" src="Chatbox.png" alt="">
+        <!-- <img id="white_chatbox" src="Chatbox.png" alt=""> -->
+        <div id="white_chatbox">
+            <div id="chat_messages"></div>
+        </div>
+
+        <div id="input_lot">
+            <!-- <img class="uploadicon_img" src="upload_icon3.PNG" alt=""> -->
+            <label for="pdf_upload">
+                <img class="uploadicon_img" src="upload_icon3.PNG" alt="Upload">
+            </label>
+            <input id="pdf_upload" type="file" accept="application/pdf" style="display:none;">
+
+            <input id="input_box" type="text" placeholder="Search">
+            <img id="mic_btn" class="micicon_img" src="mic_icon2.PNG" alt="">
+            <img class="searchicon_img" src="search_icon2.PNG" alt="">
+        </div>
+        
     </section>
 
+    <script src="app.js"></script>
 </body>
 </html>

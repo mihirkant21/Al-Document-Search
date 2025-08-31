@@ -13,11 +13,24 @@ function sendMessage() {
     addMessage(text, "user");
     inputBox.value = "";
 
-    // fake backend response
-    setTimeout(() => {
-        addMessage("⚠️ Backend not connected!", "bot");
-    }, 600);
+    // Call FastAPI backend
+    fetch("http://127.0.0.1:8000/ask", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query: text })
+    })
+    .then(response => response.json())
+    .then(data => {
+        addMessage(data.answer || "⚠️ No response from backend", "bot");
+    })
+    .catch(err => {
+        console.error(err);
+        addMessage("❌ Error connecting to backend", "bot");
+    });
 }
+
 
 // ====== Input events ======
 // Enter key
@@ -71,16 +84,30 @@ if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
 }
 
 // ====== Upload PDF ======
+// ====== Upload PDF ======
 uploadBtn.addEventListener("change", (event) => {
     const file = event.target.files[0];
     if (file) {
-        addMessage(`📂 Uploaded: ${file.name}`, "user");
+        addMessage(`📂 Uploading: ${file.name}`, "user");
 
-        setTimeout(() => {
-            addMessage("⚠️ Backend not connected to process PDF!", "bot");
-        }, 500);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        fetch("http://127.0.0.1:8000/upload", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            addMessage(data.message || "✅ PDF uploaded successfully!", "bot");
+        })
+        .catch(err => {
+            console.error(err);
+            addMessage("❌ Failed to upload PDF", "bot");
+        });
     }
 });
+
 
 // ====== Add Message Function ======
 function addMessage(text, type) {
